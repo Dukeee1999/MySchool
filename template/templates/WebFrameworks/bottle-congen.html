@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="bottle-intro" class="w3-bar-item w3-button">Bottle Introduction</a>
+  <a href="bottle-installation" class="w3-bar-item w3-button">Installation </a>
+  <a href="bottle-routing" class="w3-bar-item w3-button">Routing </a>
+  <a href="bottle-congen" class="w3-bar-item w3-button">Content Generation </a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>Content Generation</h1>
+  <p>
+    Bottle supports a wide range of types which are handled in this order:
+  </p>
+  <ul>
+    <li>
+      Dictionaries - automatically translated into JSON strings
+    </li>
+    <li>
+      Non true (e.g. None) values - empty output
+    </li>
+    <li>
+      Byte strings - returns the string as a whole. Lists of strings are joined first
+    </li>
+    <li>
+      File Objects - everything with a .read() method is seen as a file or a file-like object
+    </li>
+    <li>
+      Non true (e.g. None) values - empty output
+    </li>
+    <li>
+      Iterables/generators - note that nestled iterators are not supported.
+    </li>
+  </ul>
+
+  <h2>Static Files</h2>
+  <p>
+    It is possible to directly return file objects in bottle with static_file(), automatically guessing a mime-type, restricting paths to a root directory and generating error responses.
+  </p>
+  <pre><code class="language-js">
+    from bottle import static_file
+    @route('/images/<filename:re:.*\.png>')
+    def send_image(filename):
+        return static_file(filename, root='/path/to/image/files', mimetype='image/png')
+  </code></pre>
+
+  <h2>Errors and Redirection</h2>
+  <p>
+    Generating HTTP error pages can be done with the abort() function. Simply pass in an erorr code and message.
+  </p>
+  <pre><code class="language-js">
+    from bottle import route, abort
+    @route('/restricted')
+    def restricted():
+        abort(401, "Sorry, access denied.")
+  </code></pre>
+  <p>
+    <br />
+    Redirection done with the eponymous redirect() function quite intuitively.
+  </p>
+  <pre><code class="language-js">
+    from bottle import route, redirect
+    @route('/wrong/url')
+    def wrong():
+        redirect("/right/url")
+  </code></pre>
+
+</div>

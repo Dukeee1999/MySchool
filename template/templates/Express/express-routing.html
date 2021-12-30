@@ -1,0 +1,185 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="express-intro" class="w3-bar-item w3-button">Express Introduction</a>
+  <a href="express-routing" class="w3-bar-item w3-button">Routing </a>
+  <a href="express-middleware" class="w3-bar-item w3-button">Middleware </a>
+  <a href="express-template" class="w3-bar-item w3-button">Template Engines </a>
+  <a href="express-database" class="w3-bar-item w3-button">Database Interation </a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>Routing</h1>
+  <p>Routing refers to how an application’s endpoints (URIs) respond to client requests. For an introduction to routing, see Basic routing. </p>
+  <p>
+    You define routing using methods of the Express app object that correspond to HTTP methods; for example, app.get() to handle GET requests and app.post to handle POST requests. For a full list, see app.METHOD. You can also use app.all() to handle all HTTP methods and app.use() to specify middleware as the callback function (See Using middleware for details).
+  </p>
+
+  <p>
+    These routing methods specify a callback function (sometimes called “handler functions”) called when the application receives a request to the specified route (endpoint) and HTTP method. In other words, the application “listens” for requests that match the specified route(s) and method(s), and when it detects a match, it calls the specified callback function.
+  </p>
+
+  <p>
+    In fact, the routing methods can have more than one callback function as arguments. With multiple callback functions, it is important to provide next as an argument to the callback function and then call next() within the body of the function to hand off control to the next callback.
+  </p>
+
+
+<p>The following code is an example of a very basic route.</p>
+
+<div class="w3-code notranslate htmlHigh">
+<pre><code class="language-js">var express = require('express')
+var app = express()
+
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/', function (req, res) {
+res.send('hello world')
+})
+</code></pre>
+</div>
+
+  <h2>Route Methods</h2>
+  <p>A route method is derived from one of the HTTP methods, and is attached to an instance of the express class.
+
+  The following code is an example of routes that are defined for the GET and the POST methods to the root of the app.</p>
+
+<div class="w3-code notranslate htmlHigh">
+<pre><code class="language-js">// GET method route
+app.get('/', function (req, res) {
+  res.send('GET request to the homepage')
+})
+
+// POST method route
+app.post('/', function (req, res) {
+  res.send('POST request to the homepage')
+})
+</code></pre>
+</div>
+  <p>Express supports methods that correspond to all HTTP request methods: get, post, and so on. For a full list, see app.METHOD.
+
+There is a special routing method, app.all(), used to load middleware functions at a path for all HTTP request methods. For example, the following handler is executed for requests to the route “/secret” whether using GET, POST, PUT, DELETE, or any other HTTP request method supported in the http module.
+
+  </p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">app.all('/secret', function (req, res, next) {
+  console.log('Accessing the secret section ...')
+  next() // pass control to the next handler
+  })
+  </code></pre>
+  </div>
+  <h2>Route paths</h2>
+  <p>Route paths, in combination with a request method, define the endpoints at which requests can be made. Route paths can be strings, string patterns, or regular expressions.</p>
+  <p>Here are some examples of route paths based on strings.</p>
+  <p>This route path will match requests to the root route, /.</p>
+
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">app.get('/', function (req, res) {
+  res.send('root')
+  })
+  </code></pre>
+  </div>
+
+  <p>This route path will match requests to <code>/about</code>.</p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">app.get('/about', function (req, res) {
+    res.send('about')
+  })
+  </code></pre>
+  </div>
+
+  <div class="w3-code notranslate htmlHigh">
+  <p>This route path will match requests to <code>/random.text</code>.</p>
+  <pre><code class="language-js">app.get('/random.text', function (req, res) {
+    res.send('random.text')
+  })
+  </code></pre>
+  </div>
+
+  <h2>Route parameters</h2>
+  <p>Route parameters are named URL segments that are used to capture the values specified at their position in the URL. The captured values are populated in the req.params object, with the name of the route parameter specified in the path as their respective keys.
+  </p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code>Route path: /users/:userId/books/:bookId
+  Request URL: http://localhost:3000/users/34/books/8989
+  req.params: { "userId": "34", "bookId": "8989" }
+  </code></pre>
+  </div>
+  <p>To define routes with route parameters, simply specify the route parameters in the path of the route as shown below.</p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">app.get('/users/:userId/books/:bookId', function (req, res) {
+    res.send(req.params)
+  })
+  </code></pre>
+  </div>
+
+
+  <h2>Route handlers</h2>
+
+  <p>
+    You can provide multiple callback functions that behave like middleware to handle a request. The only exception is that these callbacks might invoke next('route') to bypass the remaining route callbacks. You can use this mechanism to impose pre-conditions on a route, then pass control to subsequent routes if there’s no reason to proceed with the current route.
+  </p>
+  <p>
+    Route handlers can be in the form of a function, an array of functions, or combinations of both, as shown in the following examples.
+  </p>
+  <p>
+    A single callback function can handle a route. For example:
+  </p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">app.get('/example/a', function (req, res) {
+  res.send('Hello from A!')
+})
+</code></pre>
+  </div>
+<p>More than one callback function can handle a route (make sure you specify the <code>next</code> object). For example:</p>
+<div class="w3-code notranslate htmlHigh">
+<pre><code class="language-js">app.get('/example/b', function (req, res, next) {
+  console.log('the response will be sent by the next function ...')
+  next()
+}, function (req, res) {
+  res.send('Hello from B!')
+})
+</code></pre>
+</div>
+<p>An array of callback functions can handle a route. For example:</p>
+<div class="w3-code notranslate htmlHigh">
+<pre><code class="language-js">var cb0 = function (req, res, next) {
+    console.log('CB0')
+    next()
+  }
+
+  var cb1 = function (req, res, next) {
+    console.log('CB1')
+    next()
+  }
+
+  var cb2 = function (req, res) {
+    res.send('Hello from C!')
+  }
+
+  app.get('/example/c', [cb0, cb1, cb2])
+  </code></pre>
+  </div>
+  <p>A combination of independent functions and arrays of functions can handle a route. For example:</p>
+  <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">var cb0 = function (req, res, next) {
+    console.log('CB0')
+    next()
+  }
+
+  var cb1 = function (req, res, next) {
+    console.log('CB1')
+    next()
+  }
+
+  app.get('/example/d', [cb0, cb1], function (req, res, next) {
+    console.log('the response will be sent by the next function ...')
+    next()
+  }, function (req, res) {
+    res.send('Hello from D!')
+  })
+  </code></pre>
+  </div>
+    <br>
+  <p>Reference:</p>
+  <p>Official Guide by Express, https://expressjs.com/en/guide/routing.html</p>
+</div>

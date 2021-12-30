@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add user</title>
+<style type="text/css">
+body {
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            font-family: "Microsoft Yahei";
+            color: #666;
+        }
+
+        div {
+            margin: auto;
+            margin-bottom: 10px;
+            margin-top: 10px;
+
+        }
+
+        #header {
+            height: 82px;
+            width: 1200px;
+        }
+
+        #main {
+            height: 460px;
+            width: 1200px;
+            border: 1px black solid;
+            overflow: auto;
+        }
+
+        .book_info div {
+            height: 10px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .wel_word {
+            font-size: 60px;
+            float: left;
+        }
+        #header div a {
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        #header div {
+            float: right;
+            margin-top: 55px;
+        }
+
+
+        .book_cond input {
+            width: 50px;
+            text-align: center;
+        }
+
+        #main table{
+            margin: auto;
+            margin-top: 80px;
+            border-collapse: collapse;
+        }
+
+        #main table td{
+            width: 120px;
+            text-align:center;
+            border-bottom: 1px #e3e3e3 solid;
+            padding: 10px;
+        }
+
+        .user_span span{
+            color: red;
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        .user_span a , td a{
+            font-size: 20px;
+            color: blue;
+        }
+
+        #header div span {
+            margin: 10px;
+        }
+
+        #header div .um_span{
+            color: red;
+            font-size: 25px;
+            margin: 10px;
+        }
+
+        #header div a {
+            color: blue;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 200px;
+        }
+
+        h1 a {
+            color:red;
+        }
+
+        input {
+            text-align: center;
+        }
+</style>
+</head>
+<body>
+    <div id="header">
+			<span class="wel_word">Add user</span>
+
+	</div>
+		
+		<div id="main">
+			<form action="addUser" method="POST">
+				<table>
+					<tr>
+						<td>Username</td>
+						<td>Password</td>
+						<td>Email</td>
+					</tr>		
+					<tr>
+						<td><input name="username" type="text" value=""/></td>
+						<td><input name="password" type="text" value=""/></td>
+						<td><input name="email" type="text" value=""/></td>
+						<td><input type="submit" value="Submit"/></td>
+					</tr>	
+				</table>
+			</form>
+			
+	
+		</div>
+</body>
+</html>

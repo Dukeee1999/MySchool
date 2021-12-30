@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Post your question!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css">
+<!--?  <link rel="stylesheet" href="css/global.css">-->
+    <style>
+        html{overflow-x: hidden; overflow-y: auto; background-color: #eee; }
+        body{line-height:24px;}
+        i{font-style: normal;}
+        .main{width: 1080px; min-height: 600px; margin: 0 auto 15px;}
+        body input, body textarea{box-shadow:none;}
+        body .layui-layer-prompt textarea.layui-layer-input{resize: both;}
+    </style>
+<script src="layui/layui.js"></script>
+</head>
+<body >
+
+  <script type="text/javascript">
+      function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                  var c = ca[i];
+                  while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                  }
+                  if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                  }
+                }
+                return "";
+              }
+      </script>
+
+<div class="main layui-clear">
+  <div class="fly-panel" pad20>
+    <h2 class="page-title">Post your question!</h2>
+
+    <div class="layui-form layui-form-pane">
+      <form action="/new-post" method="post">
+        <input type="hidden" id="usrname" name="usrname" value="">
+        <div class="layui-form-item">
+          <label for="L_title" class="layui-form-label">Title</label>
+          <div class="layui-input-block">
+            <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <div class="layui-input-block">
+             <div class="editor">
+    			<text id="content" name="content" style="width:1040px;height:450px;visibility:hidden;"></text>
+  			 </div>
+          </div>
+          <label for="L_content" class="layui-form-label" style="top: -2px;">Description</label>
+        </div>
+        <div class="layui-form-item">
+          <button class="layui-btn" lay-filter="*" lay-submit>Post now!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+ <script type="text/javascript" charset="utf-8" src="js/kindeditor.js"></script>
+  <script type="text/javascript">
+    KE.show({
+        id : 'content',
+		resizeMode : 1,
+        cssPath : './index.css',
+        items : [
+        'fontname', 'fontsize', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+        'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+        'insertunorderedlist', 'emoticons', 'image', 'link']
+    });
+
+    if(getCookie('username')) {
+      var a = document.getElementById('usrname');
+      var b = getCookie('username')
+      console.log(getCookie('username'))
+      a.setAttribute("value",b)
+            }
+
+  </script>
+</body>
+</html>

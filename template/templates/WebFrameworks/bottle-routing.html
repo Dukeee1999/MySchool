@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="bottle-intro" class="w3-bar-item w3-button">Bottle Introduction</a>
+  <a href="bottle-installation" class="w3-bar-item w3-button">Installation </a>
+  <a href="bottle-routing" class="w3-bar-item w3-button">Routing </a>
+  <a href="bottle-congen" class="w3-bar-item w3-button">Content Generation </a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>Routing</h1>
+  <h2>A Basic Application</h2>
+  <p>
+    This is a very simple application with a single route.  <br />
+    The route() decorator associates a URL path to a function.  <br />
+    the run() sets up the instance of bottle with the host and the associated port.  <br />
+
+  </p>
+  <pre><code class="language-js">
+    from bottle import Bottle, run
+
+    app = Bottle()
+
+    @app.route('/hello')
+    def hello():
+        return "Hello World!"
+
+    run(app, host='localhost', port=8080)
+  </code></pre>
+
+  <h3>Dynamic Routing</h3>
+  <p>
+    It is also possible to have routes that contain wildcards. These are called dynamic routes.  <br />
+    These can match multiple URLs and accept up to multiple characters up to the next slash. <br />
+    Here is an example.
+  </p>
+  <pre><code class="language-js">
+    @route('/wiki/<pagename>')
+    def show_wiki_page(pagename):
+        ...
+  </code></pre>
+
+  <h3>HTTP Request Methods</h3>
+  <p>
+    It is also possibl to specify request methods for routes. The default is get() but post() and delete() are also possible to name a few. <br />
+    Here post() and get() will be demonstrated with get displaying a HTML form to the user whilst post checks the validity of login.
+  </p>
+  <pre><code class="language-js">
+    from bottle import get, post, request # or route
+
+    @get('/login') # or @route('/login')
+    def login():
+        return '''
+            <form action="/login" method="post">
+                Username: <input name="username" type="text" />
+                Password: <input name="password" type="password" />
+                <input value="Login" type="submit" />
+            </form>
+        '''
+
+    @post('/login') # or @route('/login', method='POST')
+    def do_login():
+        username = request.forms.get('username')
+        password = request.forms.get('password')
+        if check_login(username, password):
+            return "<p>Your login information was correct.</p>"
+        else:
+            return "<p>Login failed.</p>"
+  </code></pre>
+
+</div>

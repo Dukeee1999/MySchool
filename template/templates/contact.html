@@ -1,0 +1,38 @@
+<head>
+    <script type="text/javascript">
+        function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                  var c = ca[i];
+                  while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                  }
+                  if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                  }
+                }
+                return "";
+              }
+    </script>
+</head>
+
+<p id="method">The following is our contact method:
+<br>
+<br><b>Ray Zhou:</b> 
+<div>Mobile phone: xxx </div>
+<div>Email: xxx</div>
+
+<br><b>Leonard Sun:</b> 
+<div>Mobile phone: xxx </div>
+<div>Email: xxx</div>
+
+<br><b>Yunqi Sha:</b> 
+<div>Mobile phone: xxx </div>
+<div>Email: xxx</div>
+
+<br><b>Sangmin Lee:</b> 
+<div>Mobile phone: xxx </div>
+<div>Email: xxx</div>
+</p>

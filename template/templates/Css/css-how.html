@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="css-home" class="w3-bar-item w3-button">CSS Home</a>
+  <a href="css-introduction" class="w3-bar-item w3-button">CSS Introduction</a>
+  <a href="css-syntax" class="w3-bar-item w3-button">CSS Syntax</a>
+  <a href="css-selectors" class="w3-bar-item w3-button">CSS Selectors</a>
+  <a href="css-how" class="w3-bar-item w3-button">CSS How To Add</a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>How To Add CSS</h1>
+  <br>
+  <h2>Three Ways to Insert CSS</h2>
+  <p>There are three ways of inserting a style sheet:</p>
+  <ul>
+    <li>
+      External CSS
+    </li>
+    <li>
+      Internal CSS
+    </li>
+    <li>
+      Inline CSS
+    </li>
+  </ul>
+<br>
+  <h2>External CSS</h2>
+  <p>With an external style sheet, you can change the look of an entire website by changing just one file!</p>
+  <p>Each HTML page must include a reference to the external style sheet file inside the &lt;link&gt; element, inside the head section.</p>
+  <h4>Example</h4>
+  <p>External styles are defined within the &lt;link&gt; element, inside the &lt;head&gt; section of an HTML page:</p>
+  <div class="w3-code notranslate htmlHigh">
+    &lt;!DOCTYPE html&gt;<br>
+    &lt;html&gt;<br>
+    &lt;head&gt;<br>
+    &lt;link rel="stylesheet" href="mystyle.css"&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+
+    &lt;h1&gt;This is a heading&lt;/h1&gt;<br>
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;<br>
+
+    &lt;/body&gt;<br>
+    &lt;/html&gt;
+  </div>
+  <p>An external style sheet can be written in any text editor, and must be saved with a .css extension.</p>
+  <p>The external .css file should not contain any HTML tags.</p>
+  <p>Here is how the "mystyle.css" file looks:</p>
+  <h3>"mystyle.css"</h3>
+  <div class="w3-code notranslate htmlHigh">
+    body {<br>
+      background-color: lightblue;<br>
+    }<br>
+    <br>
+    h1 {<br>
+      color: navy;<br>
+      margin-left: 20px;<br>
+    }
+  </div>
+  <br>
+  <h2>Internal CSS</h2>
+  <p>An internal style sheet may be used if one single HTML page has a unique style.</p>
+  <p>The internal style is defined inside the 'style' element, inside the head section.</p>
+  <h4>Example</h4>
+  <p>Internal styles are defined within the 'style' element, inside the &lt;head&gt; section of an HTML page:</p>
+  <div class="w3-code notranslate htmlHigh">
+    &lt;!DOCTYPE html&gt;<br>
+    &lt;html&gt;<br>
+    &lt;head&gt;<br>
+    &lt;style&gt;<br>
+    body {
+      background-color: linen;
+    }
+
+    h1 {
+      color: maroon;
+      margin-left: 40px;
+    }<br>
+    &lt;/style&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br>
+
+    &lt;h1>This is a heading&lt;/h1&gt;<br>
+    &lt;p>This is a paragraph.&lt;/p&gt;<br>
+
+    &lt;/body&gt;<br>
+    &lt;/html&gt;
+  </div>
+  <br>
+  <h2>Inline CSS</h2>
+  <p>An inline style may be used to apply a unique style for a single element.</p>
+  <p>To use inline styles, add the style attribute to the relevant element. The style attribute can contain any CSS property.</p>
+  <h4>Example</h4>
+  <p>Inline styles are defined within the "style" attribute of the relevant element:</p>
+  <div class="w3-code notranslate htmlHigh">
+    &lt;!DOCTYPE html&gt;<br>
+    &lt;html&gt;<br>
+    &lt;body&gt;<br>
+
+    &lt;h1 style="color:blue;text-align:center;"&gt;This is a heading&lt;/h1&gt;<br>
+    &lt;p style="color:red;"&gt;This is a paragraph.&lt;/p&gt;<br>
+
+    &lt;/body&gt;<br>
+    &lt;/html&gt;
+  </div>
+  <br>
+  <h2>Multiple Style Sheets</h2>
+  <p>If some properties have been defined for the same selector (element) in different style sheets, the value from the last read style sheet will be used.</p>
+  <br>
+  <h4>Assume that an external style sheet has the following style for the &lt;h1&gt; element:</h4>
+  <div class="w3-code notranslate htmlHigh">
+    h1 {<br>
+      color: navy;<br>
+    }
+  </div>
+  <br>
+  <h4>Then, assume that an internal style sheet also has the following style for the &lt;h1&gt; element:</h4>
+  <div class="w3-code notranslate htmlHigh">
+    h1 {<br>
+      color: orange;<br>
+    }
+  </div>
+  <br>
+  <h3>Example</h3>
+  <p>If the internal style is defined after the link to the external style sheet, the &lt;h1&gt; elements will be "orange":</p>
+  <div class="w3-code notranslate htmlHigh">
+    &lt;head&gt;<br>
+    &lt;link rel="stylesheet" type="text/css" href="mystyle.css"&gt;<br>
+    &lt;style&gt;<br>
+    h1 {<br>
+      color: orange;<br>
+    }<br>
+    &lt;/style&gt;<br>
+    &lt;/head&gt;
+  </div>
+  <br>
+  <h3>Example</h3>
+  <p>However, if the internal style is defined before the link to the external style sheet, the h1 elements will be "navy":</p>
+  <div class="w3-code notranslate htmlHigh">
+    &lt;head&gt;<br>
+    &lt;style&gt;<br>
+    h1 {<br>
+      color: orange;<br>
+    }<br>
+    &lt;/style&gt;<br>
+    &lt;link rel="stylesheet" type="text/css" href="mystyle.css"&gt;<br>
+    &lt;/head&gt;<br>
+  </div>
+
+
+  <br>
+  <h2>Cascading Order</h2>
+  <p>What style will be used when there is more than one style specified for an HTML element?</p>
+  <p>All the styles in a page will "cascade" into a new "virtual" style sheet by the following rules, where number one has the highest priority:</p>
+  <ul>
+    <li>
+      Inline style (inside an HTML element)
+    </li>
+    <li>
+      External and internal style sheets (in the head section)
+    </li>
+    <li>
+      Browser default
+    </li>
+  </ul>
+  <p>So, an inline style has the highest priority, and will override external and internal styles and browser defaults.</p>
+  <br>
+  <p>Reference:</p>
+  <p>CSS tutrial, https://www.w3schools.com/css</p>
+</div>

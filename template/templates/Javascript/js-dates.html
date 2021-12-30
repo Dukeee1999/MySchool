@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="js-intro" class="w3-bar-item w3-button">JavaScript Introduction</a>
+  <a href="js-syntax" class="w3-bar-item w3-button">Syntax and Variables </a>
+  <a href="js-statements" class="w3-bar-item w3-button">Statements </a>
+  <a href="js-dates" class="w3-bar-item w3-button">Dates </a>
+  <a href="js-comparison" class="w3-bar-item w3-button">Comparisons </a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>Dates</h1>
+  <p>
+    JavaScript Date Object allows dates to be used and can be initialized in a variety of ways. <br />
+    JavaScript by default will display a date as a full text string. <br />
+    There are 4 ways to initialize a DateObject.
+  </p>
+  <pre><code class="language-js">var express = require('express')
+    new Date();
+    new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    new Date(milliseconds);
+    new Date(date string);
+  </code></pre>
+  <ul>
+    <li>
+      new Date() creates a new date Object with the current time and date.
+    </li>
+    <li>
+      new Date(year, month, day, hours, minutes, seconds, milliseconds) creates a new date Object with the specified time and date. (one and 2 digit years will be interpreted as the previous century)
+    </li>
+    <li>
+      new Date(milliseconds) creates a new date Object with the time and date as number of milliseconds from 1 January 1970 00:00:00 UTC. This is referred to as zero time.
+    </li>
+    <li>
+      new Date(date string) creates a date from a date string.
+    </li>
+  </ul>
+
+  <br>
+  <p>Reference:</p>
+  <p>JavaScript tutrial, https://www.w3schools.com/javascript</p>
+</div>

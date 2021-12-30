@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/css/w3school.css">
+<link rel="stylesheet" href="/css/prism.css">
+<link rel="stylesheet" href="/lib/w3schools23.css">
+
+<div class="w3-sidebar w3-bar-block" style="width:25%">
+  <a href="express-intro" class="w3-bar-item w3-button">Express Introduction</a>
+  <a href="express-routing" class="w3-bar-item w3-button">Routing </a>
+  <a href="express-middleware" class="w3-bar-item w3-button">Middleware </a>
+  <a href="express-template" class="w3-bar-item w3-button">Template Engines </a>
+  <a href="express-database" class="w3-bar-item w3-button">Database Interation </a>
+</div>
+
+<div style="margin-left:25%">
+  <h1>Database integration</h1>
+  <p>
+    Adding the capability to connect databases to Express apps is just a matter of loading an appropriate Node.js driver for the database in your app. This document briefly explains how to add and use some of the most popular Node.js modules for database systems in your Express app:
+  </p>
+  <ul>
+    <li>
+      MySQL
+    </li>
+    <li>
+      MongoDB
+    </li>
+    <li>
+      Redis
+    </li>
+  </ul>
+
+  <h2>MySQL</h2>
+ <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'dbuser',
+    password: 's3kreee7',
+    database: 'my_db'
+  })
+
+  connection.connect()
+
+  connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+    if (err) throw err
+
+    console.log('The solution is: ', rows[0].solution)
+  })
+
+  connection.end()
+  </code></pre>
+  </div>
+  <h2>MongoDB</h2>
+ <div class="w3-code notranslate htmlHigh">
+  <pre><code class="language-js">
+    var MongoClient = require('mongodb').MongoClient
+
+    MongoClient.connect('mongodb://localhost:27017/animals', function (err, client) {
+      if (err) throw err
+
+      var db = client.db('animals')
+
+      db.collection('mammals').find().toArray(function (err, result) {
+        if (err) throw err
+
+        console.log(result)
+      })
+    })
+  </code></pre>
+</div>
+<br>
+<p>Reference:</p>
+<p>Official Guide by Express, https://expressjs.com/en/guide/database-integration.html</p>
+</div>
